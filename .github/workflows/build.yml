@@ -1,0 +1,41 @@
+name: Build Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Check if build succeeded
+        run: |
+          if [ -d ".next" ]; then
+            echo "Build succeeded!"
+          else
+            echo "Build failed!"
+            exit 1
+          fi
+
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: .next
