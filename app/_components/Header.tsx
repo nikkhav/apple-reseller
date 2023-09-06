@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../public/geekbro-logo.png";
+import logo from "../../public/geekbro-logo.png";
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
       </div>
       <div className="border-b border-b-gray-300 shadow-gray-400 shadow-sm px-20 py-5">
         <div className={"flex justify-between items-center"}>
-          <Image src={logo} alt={"Logo"} height={180} width={180} />
+          <Image src={logo} alt={"Logo"} width={180} priority={true} />
 
           <div className="flex items-center space-x-8">
             <h3 className="text-lg font-light">Mac</h3>
