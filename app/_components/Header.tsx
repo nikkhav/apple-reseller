@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../../public/geekbro-logo.png";
+import logo from "../../public/images/geekbro-logo.png";
 
 const Header = () => {
   return (

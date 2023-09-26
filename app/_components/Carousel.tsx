@@ -6,6 +6,8 @@ import Image, { StaticImageData } from "next/image";
 interface ImageProps {
   src: StaticImageData;
   alt: string;
+  title: string;
+  textColor: string;
   backgroundColor: string;
   cursorColor: string;
 }
@@ -56,7 +58,7 @@ const Carousel = ({ images }: { images: ImageProps[] }) => {
         clearInterval(timerRef.current);
       }
     };
-  }, []);
+  });
 
   return (
     <div
@@ -96,6 +98,30 @@ const Carousel = ({ images }: { images: ImageProps[] }) => {
               left: `${index * 100}%`,
             }}
           >
+            <div
+              className={
+                "flex flex-col justify-center items-center z-10 absolute top-1/2 transform -translate-y-1/2 w-full h-full"
+              }
+            >
+              <h2
+                className={"text-5xl font-semibold"}
+                style={{
+                  color: image.textColor,
+                }}
+              >
+                {image.title}
+              </h2>
+              <button
+                className={`px-8 py-2 mt-6 text-sm font-semibold rounded-3xl ${
+                  image.cursorColor === "black"
+                    ? "text-white bg-black"
+                    : "text-black bg-white"
+                }`}
+              >
+                Подробнее
+              </button>
+            </div>
+
             <Image
               src={image.src}
               alt={image.alt}
