@@ -1,0 +1,25 @@
+{
+  "header": {
+    "account": "Mein Konto",
+    "sale": "Rabatte"
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "about": "Über uns",
+    "delivery": "Lieferung",
+    "payment": "Zahlung"
+  },
+  "button": {
+    "learnMore": "Mehr erfahren"
+  },
+  "page": {
+    "home": {
+      "title": "Willkommen bei NextJs i18n",
+      "description": "Internationalisierung im NextJs 13 App-Router"
+    },
+    "about": {
+      "title": "Über uns",
+      "description": "Dies ist die About-Seite"
+    }
+  }
+}

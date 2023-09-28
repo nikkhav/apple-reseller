@@ -1,6 +1,4 @@
-"use client";
-
-import Carousel from "@/app/_components/Carousel";
+import Carousel from "@/app/[lang]/_components/Carousel";
 import iphone15_pro_hero from "@/public/images/iphone-15-pro-hero.png";
 import apple_watch_hero from "@/public/images/apple-watch-hero.jpg";
 import macbook_pro from "@/public/images/macbook-pro-hero.jpeg";
@@ -9,10 +7,18 @@ import iphone_icon from "@/public/images/iphone-icon.png";
 import watch_icon from "@/public/images/watch-icon.png";
 import airpods_icon from "@/public/images/airpods-icon.png";
 import iphone_14_pro_icon from "@/public/images/iphone-14-pro-black-icon.png";
-import HomeCategoryCard from "@/app/_components/HomeCategoryCard";
-import HomeProductCard from "@/app/_components/HomeProductCard";
+import HomeCategoryCard from "@/app/[lang]/_components/HomeCategoryCard";
+import HomeProductCard from "@/app/[lang]/_components/HomeProductCard";
+import { getDictionary } from "@/lib/dictionary";
+import { Locale } from "@/i18n.config";
 
-export default function Home() {
+export default async function Home({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const { button } = await getDictionary(lang);
+
   const imagesData = [
     {
       src: macbook_pro,
@@ -38,7 +44,7 @@ export default function Home() {
   ];
   return (
     <main>
-      <Carousel images={imagesData} />
+      <Carousel images={imagesData} buttonText={button.learnMore} />
       <div className={"flex flex-row justify-center mt-10"}>
         <HomeCategoryCard
           image={iphone_icon}

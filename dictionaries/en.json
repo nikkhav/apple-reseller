@@ -1,0 +1,25 @@
+{
+  "header": {
+    "account": "My Account",
+    "sale": "Sales"
+  },
+  "footer": {
+    "contact": "Contact Us",
+    "about": "About Us",
+    "delivery": "Delivery",
+    "payment": "Payment"
+  },
+  "button": {
+    "learnMore": "Learn More"
+  },
+  "page": {
+    "home": {
+      "title": "Welcome to NextJs i18n",
+      "description": "Internationalization in NextJs 13 App router"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "This is the about page"
+    }
+  }
+}

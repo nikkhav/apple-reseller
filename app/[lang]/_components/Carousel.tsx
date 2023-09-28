@@ -11,7 +11,13 @@ interface ImageProps {
   cursorColor: string;
 }
 
-const Carousel = ({ images }: { images: ImageProps[] }) => {
+const Carousel = ({
+  images,
+  buttonText,
+}: {
+  images: ImageProps[];
+  buttonText: string;
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -117,7 +123,7 @@ const Carousel = ({ images }: { images: ImageProps[] }) => {
                     : "text-black bg-white"
                 }`}
               >
-                Подробнее
+                {buttonText}
               </button>
             </div>
 

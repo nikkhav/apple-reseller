@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import logo from "@/public/images/geekbro-logo-light.png";
+import { getDictionary } from "@/lib/dictionary";
+import { Locale } from "@/i18n.config";
 
-const Footer = () => {
+const Footer = async ({ lang }: { lang: Locale }) => {
+  const { footer } = await getDictionary(lang);
   return (
     <div className={"bg-gray-900 mt-5 px-10 py-5 text-white"}>
       <div className="px-20 py-5">
@@ -12,10 +15,10 @@ const Footer = () => {
           <Image src={logo} alt={"Logo"} width={180} priority={true} />
 
           <div className="flex flex-col md:flex-row items-center md:space-x-8">
-            <h3 className="text-lg font-light">Контакты</h3>
-            <h3 className="text-lg font-light">О компании</h3>
-            <h3 className="text-lg font-light">Доставка</h3>
-            <h3 className="text-lg font-light">Оплата</h3>
+            <h3 className="text-lg font-light">{footer.contact}</h3>
+            <h3 className="text-lg font-light">{footer.about}</h3>
+            <h3 className="text-lg font-light">{footer.delivery}</h3>
+            <h3 className="text-lg font-light">{footer.payment}</h3>
           </div>
         </div>
       </div>

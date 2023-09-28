@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import { formatCurrency } from "@/app/functions";
+import { formatCurrency } from "@/app/[lang]/functions";
 
 interface HomeProductCardProps {
   image: StaticImageData;
