@@ -1,29 +1,29 @@
+import React from "react";
 import Image, { StaticImageData } from "next/image";
+import { formatCurrency } from "@/app/functions";
 
 interface HomeProductCardProps {
   image: StaticImageData;
   title: string;
-  priceFrom: number;
+  price: number;
 }
 
-const HomeProductCard = ({ image, title, priceFrom }: HomeProductCardProps) => {
-  const formatCurrency = (amount: number) => {
-    const amountString = amount.toString();
-    const parts = amountString.split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    return parts.join(".");
-  };
+const HomeProductCard = ({ image, title, price }: HomeProductCardProps) => {
   return (
-    <div className={"flex flex-row w-1/5 bg-gray-50 p-4 mx-5 rounded-sm"}>
-      <div className={"flex flex-col align-middle justify-center w-1/2"}>
-        <h3 className={"text-xl font-light"}>{title}</h3>
-        <h3 className={"text-md text-gray-600 font-light mt-2"}>
-          от {formatCurrency(priceFrom)} руб.
-        </h3>
-      </div>
-      <div className={"flex flex-col w-1/2"}>
-        <Image src={image} alt={title} />
-      </div>
+    <div
+      className={
+        "flex flex-col justify-center items-center w-full md:w-1/5 p-4 text-center"
+      }
+    >
+      <Image height={150} src={image} alt={title} />
+      <h3 className={"text-md text-gray-600 font-light mt-2"}>{title}</h3>
+      <h3 className={"text-md text-gray-600 font-light mt-2"}>
+        {formatCurrency(price)} руб.
+      </h3>
+
+      <button className={"px-4 py-2 mt-4 bg-gray-900 text-white rounded-md"}>
+        В корзину
+      </button>
     </div>
   );
 };

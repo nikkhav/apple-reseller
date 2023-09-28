@@ -5,7 +5,6 @@ import Image, { StaticImageData } from "next/image";
 
 interface ImageProps {
   src: StaticImageData;
-  alt: string;
   title: string;
   textColor: string;
   backgroundColor: string;
@@ -124,7 +123,7 @@ const Carousel = ({ images }: { images: ImageProps[] }) => {
 
             <Image
               src={image.src}
-              alt={image.alt}
+              alt={image.title}
               fill={true}
               sizes={"100%"}
               style={{

@@ -1,39 +1,38 @@
 "use client";
 
 import Carousel from "@/app/_components/Carousel";
-import iphone14_pro from "@/public/images/iphone-14-pro-hero.jpeg";
+import iphone15_pro_hero from "@/public/images/iphone-15-pro-hero.png";
+import apple_watch_hero from "@/public/images/apple-watch-hero.jpg";
 import macbook_pro from "@/public/images/macbook-pro-hero.jpeg";
-import macbook_air from "@/public/images/macbook-air-hero.jpeg";
 import mac_icon from "@/public/images/mac-icon.png";
 import iphone_icon from "@/public/images/iphone-icon.png";
 import watch_icon from "@/public/images/watch-icon.png";
 import airpods_icon from "@/public/images/airpods-icon.png";
+import iphone_14_pro_icon from "@/public/images/iphone-14-pro-black-icon.png";
+import HomeCategoryCard from "@/app/_components/HomeCategoryCard";
 import HomeProductCard from "@/app/_components/HomeProductCard";
 
 export default function Home() {
   const imagesData = [
     {
       src: macbook_pro,
-      alt: "macbook pro",
       backgroundColor: "#000",
       cursorColor: "white",
-      title: "New MacBook Pro",
+      title: "Новый MacBook Pro",
       textColor: "white",
     },
     {
-      src: macbook_air,
-      alt: "macbook air",
-      backgroundColor: "#fcfbfc",
-      cursorColor: "black",
-      title: "15 inch MacBook Air",
-      textColor: "#fbe2e2",
-    },
-    {
-      src: iphone14_pro,
-      alt: "iphone 14 pro",
+      src: apple_watch_hero,
       backgroundColor: "#000",
       cursorColor: "white",
-      title: "iPhone 14 Pro",
+      title: "Apple Watch Series 9",
+      textColor: "white",
+    },
+    {
+      src: iphone15_pro_hero,
+      backgroundColor: "#000",
+      cursorColor: "white",
+      title: "Титан. iPhone 15 Pro",
       textColor: "white",
     },
   ];
@@ -41,21 +40,59 @@ export default function Home() {
     <main>
       <Carousel images={imagesData} />
       <div className={"flex flex-row justify-center mt-10"}>
-        <HomeProductCard
+        <HomeCategoryCard
           image={iphone_icon}
           title={"iPhone"}
           priceFrom={45900}
         />
-        <HomeProductCard image={mac_icon} title={"Mac"} priceFrom={99990} />
-        <HomeProductCard
+        <HomeCategoryCard image={mac_icon} title={"Mac"} priceFrom={99990} />
+        <HomeCategoryCard
           image={watch_icon}
           title={"Apple Watch"}
           priceFrom={31990}
         />
-        <HomeProductCard
+        <HomeCategoryCard
           image={airpods_icon}
           title={"AirPods"}
           priceFrom={9990}
+        />
+      </div>
+      <h2
+        className={
+          "text-3xl text-center md:text-start font-bold mt-10 ml-20 text-pink-600"
+        }
+      >
+        Популярно в этом месяце
+      </h2>
+      <div
+        className={
+          "flex flex-col md:flex-row justify-center mt-10 w-10/12 mx-auto"
+        }
+      >
+        <HomeProductCard
+          image={iphone_14_pro_icon}
+          title={"Apple iPhone 14 Pro, 256Gb, Black"}
+          price={110000}
+        />
+        <HomeProductCard
+          image={iphone_14_pro_icon}
+          title={"Apple iPhone 14 Pro, 256Gb, Black"}
+          price={110000}
+        />
+        <HomeProductCard
+          image={iphone_14_pro_icon}
+          title={"Apple iPhone 14 Pro, 256Gb, Black"}
+          price={110000}
+        />
+        <HomeProductCard
+          image={iphone_14_pro_icon}
+          title={"Apple iPhone 14 Pro, 256Gb, Black"}
+          price={110000}
+        />
+        <HomeProductCard
+          image={iphone_14_pro_icon}
+          title={"Apple iPhone 14 Pro, 256Gb, Black"}
+          price={110000}
         />
       </div>
     </main>
