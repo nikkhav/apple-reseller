@@ -6,9 +6,15 @@ interface HomeProductCardProps {
   image: StaticImageData;
   title: string;
   price: number;
+  translations: any;
 }
 
-const HomeProductCard = ({ image, title, price }: HomeProductCardProps) => {
+const HomeProductCard = ({
+  image,
+  title,
+  price,
+  translations,
+}: HomeProductCardProps) => {
   return (
     <div
       className={
@@ -22,7 +28,7 @@ const HomeProductCard = ({ image, title, price }: HomeProductCardProps) => {
       </h3>
 
       <button className={"px-4 py-2 mt-4 bg-gray-900 text-white rounded-md"}>
-        В корзину
+        {translations.toCart}
       </button>
     </div>
   );

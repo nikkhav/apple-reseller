@@ -6,3 +6,8 @@ export interface IHomeProduct {
   image: StaticImageData;
   price: number;
 }
+
+export interface IProduct {
+  id: number;
+  title: string;
+}

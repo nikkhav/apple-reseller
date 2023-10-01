@@ -1,8 +1,11 @@
 {
   "header": {
     "account": "Mein Konto",
+    "cart": "Warenkorb",
+    "favorites": "Favoriten",
     "sale": "Rabatte",
-    "new": "Neu"
+    "new": "Neu",
+    "accessories": "Zubehör"
   },
   "footer": {
     "contact": "Kontakt",
@@ -13,10 +16,21 @@
   "button": {
     "learnMore": "Mehr erfahren"
   },
+  "global": {
+    "from": "ab",
+    "toCart": "In den Warenkorb"
+  },
   "page": {
     "home": {
-      "title": "Willkommen bei NextJs i18n",
-      "description": "Internationalisierung im NextJs 13 App-Router"
+      "hero": {
+        "titleMac": "Das neue MacBook Pro",
+        "titleWatch": "Apple Watch Series 9",
+        "titleIphone": "Titanium. iPhone 15 Pro"
+      },
+      "productsTitle": "Wählen Sie, was Ihnen gefällt",
+
+      "accessories": "Zubehör",
+      "allProducts": "Alle Produkte"
     },
     "products": {
       "titles": {
@@ -25,6 +39,7 @@
         "ipad": "iPad",
         "watch": "Watch",
         "accessories": "Zubehör",
+        "audio": "Audio",
         "new": "Neu",
         "sale": "Rabatte"
       }

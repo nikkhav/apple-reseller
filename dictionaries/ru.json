@@ -1,8 +1,11 @@
 {
   "header": {
     "account": "Личный кабинет",
+    "cart": "Корзина",
+    "favorites": "Избранное",
     "sale": "Скидки",
-    "new": "Новинки"
+    "new": "Новинки",
+    "accessories": "Аксессуары"
   },
   "footer": {
     "contact": "Контакты",
@@ -13,10 +16,21 @@
   "button": {
     "learnMore": "Подробнее"
   },
+  "global": {
+    "from": "от",
+    "toCart": "В корзину"
+  },
   "page": {
     "home": {
-      "title": "Willkommen bei NextJs i18n",
-      "description": "Internationalisierung im NextJs 13 App-Router"
+      "hero": {
+        "titleMac": "Новый MacBook Pro",
+        "titleWatch": "Apple Watch Series 9",
+        "titleIphone": "Титан. iPhone 15 Pro"
+      },
+      "productsTitle": "Выбирайте то, что вам по душе",
+
+      "accessories": "Аксессуары",
+      "allProducts": "Все товары"
     },
     "products": {
       "titles": {
@@ -25,6 +39,7 @@
         "ipad": "iPad",
         "watch": "Watch",
         "accessories": "Аксессуары",
+        "audio": "Аудио",
         "new": "Новинки",
         "sale": "Скидки"
       }

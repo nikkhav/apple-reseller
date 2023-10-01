@@ -6,6 +6,9 @@ import { LanguageSwitcher } from "@/app/[lang]/_components/layout/LanguageSwitch
 
 import Link from "next/link";
 import { getDictionary } from "@/lib/dictionary";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { FiHeart } from "react-icons/fi";
+import { GrCart } from "react-icons/gr";
 
 export default async function Header({ lang }: { lang: Locale }) {
   const { header } = await getDictionary(lang);
@@ -15,45 +18,83 @@ export default async function Header({ lang }: { lang: Locale }) {
         <div className="flex items-center justify-center space-x-1.5">
           <LanguageSwitcher activeLocale={lang} />
         </div>
-        <h3 className="text-sm font-light text-white">{header.account}</h3>
+        <Link
+          href={"/profile"}
+          locale={lang}
+          className="flex items-center space-x-2"
+        >
+          <h3 className="text-sm font-light text-white">{header.account}</h3>
+          <MdOutlineAccountCircle size={20} color={"white"} />
+        </Link>
       </div>
+
       <div className="border-b border-b-gray-300 shadow-gray-400 shadow-sm md:px-20 py-5">
         <div className={"flex justify-center md:justify-between items-center"}>
-          <Link href={`/${lang}`}>
+          <Link href={`/`} locale={lang}>
             <Image src={logo} alt={"Logo"} width={180} priority={true} />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href={`/${lang}/products/iphone`}
+              href={`/products/iphone`}
+              locale={lang}
               className="text-lg font-light"
             >
               iPhone
             </Link>
             <Link
-              href={`/${lang}/products/ipad`}
+              locale={lang}
+              href={`/products/ipad`}
               className="text-lg font-light"
             >
               iPad
             </Link>
-            <Link href={`/${lang}/products/mac`} className="text-lg font-light">
+            <Link
+              locale={lang}
+              href={`/products/mac`}
+              className="text-lg font-light"
+            >
               Mac
             </Link>
 
             <Link
-              href={`/${lang}/products/watch`}
+              href={`/products/watch`}
+              locale={lang}
               className="text-lg font-light"
             >
               Watch
             </Link>
             <Link
-              href={`/${lang}/products/sale`}
+              locale={lang}
+              href={`/products/accessories`}
+              className="text-lg font-light"
+            >
+              {header.accessories}
+            </Link>
+            <Link
+              locale={lang}
+              href={`/products/sale`}
               className="text-lg font-light"
             >
               {header.sale}
             </Link>
-            <Link href={`/${lang}/products/new`} className="text-lg font-light">
+            <Link
+              locale={lang}
+              href={`/products/new`}
+              className="text-lg font-light"
+            >
               {header.new}
+            </Link>
+            <p className={"text-lg font-light text-gray-500"}>|</p>
+            <Link
+              href={"/favorites"}
+              locale={lang}
+              className="text-lg font-light"
+            >
+              <FiHeart size={22} />
+            </Link>
+            <Link href={"/cart"} locale={lang} className="text-lg font-light">
+              <GrCart size={22} />
             </Link>
           </div>
         </div>

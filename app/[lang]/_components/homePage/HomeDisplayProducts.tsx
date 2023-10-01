@@ -11,6 +11,8 @@ interface DisplayProductsRowProps {
   productsWatch: IHomeProduct[];
   productsMac: IHomeProduct[];
   productsAccessories: IHomeProduct[];
+  translations: any;
+  globalTranslations: any;
 }
 
 const HomeDisplayProducts = ({
@@ -20,6 +22,8 @@ const HomeDisplayProducts = ({
   productsWatch,
   productsMac,
   productsAccessories,
+  translations,
+  globalTranslations,
 }: DisplayProductsRowProps) => {
   const [activeFilter, setActiveFilter] = useState<string>("iPhone");
   const [displayableProducts, setDisplayableProducts] =
@@ -75,7 +79,7 @@ const HomeDisplayProducts = ({
           {title}
         </h2>
         <Link className={"text-lg text-gray-600 "} href={"/en/"}>
-          Все товары
+          {translations.allProducts}
         </Link>
       </div>
       <div className={"overflow-x-auto"}>
@@ -109,7 +113,7 @@ const HomeDisplayProducts = ({
             className={buttonClass("Accessories")}
             onClick={() => changeDisplayableProducts("Accessories")}
           >
-            Аксессуары
+            {translations.accessories}
           </button>
         </div>
       </div>
@@ -120,6 +124,7 @@ const HomeDisplayProducts = ({
       >
         {displayableProducts.map((product) => (
           <HomeProductCard
+            translations={globalTranslations}
             key={product.id}
             image={product.image}
             title={product.title}

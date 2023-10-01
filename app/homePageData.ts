@@ -1,37 +1,9 @@
 import { IHomeProduct } from "@/app/types";
-
-import macbook_pro_hero from "@/public/images/macbook-pro-hero.jpeg";
-import apple_watch_hero from "@/public/images/apple-watch-hero.jpg";
 import iphone_14_pro_icon from "@/public/images/iphone-14-pro-black-icon.png";
 import ipad_air_icon from "@/public/images/ipad-air-icon.jpg";
-import iphone15_pro_hero from "@/public/images/iphone-15-pro-hero.png";
 import macbook_pro_icon from "@/public/images/macbook-pro-icon.jpeg";
 import watch_icon from "@/public/images/apple-watch-icon.jpeg";
 import airpods_icon from "@/public/images/airpods-icon.webp";
-
-export const carouselImages = [
-  {
-    src: macbook_pro_hero,
-    backgroundColor: "#000",
-    cursorColor: "white",
-    title: "Новый MacBook Pro",
-    textColor: "white",
-  },
-  {
-    src: apple_watch_hero,
-    backgroundColor: "#000",
-    cursorColor: "white",
-    title: "Apple Watch Series 9",
-    textColor: "white",
-  },
-  {
-    src: iphone15_pro_hero,
-    backgroundColor: "#000",
-    cursorColor: "white",
-    title: "Титан. iPhone 15 Pro",
-    textColor: "white",
-  },
-];
 
 export const productsIphone: IHomeProduct[] = [
   {
