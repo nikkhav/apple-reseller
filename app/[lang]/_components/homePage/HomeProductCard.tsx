@@ -12,11 +12,11 @@ const HomeProductCard = ({ image, title, price }: HomeProductCardProps) => {
   return (
     <div
       className={
-        "flex flex-col justify-center items-center w-full md:w-1/5 p-4 text-center"
+        "flex flex-col justify-center items-center w-full md:w-1/4 p-4 text-center"
       }
     >
       <Image height={150} src={image} alt={title} />
-      <h3 className={"text-md text-gray-600 font-light mt-2"}>{title}</h3>
+      <h3 className={"text-md text-gray-700 font-medium mt-4"}>{title}</h3>
       <h3 className={"text-md text-gray-600 font-light mt-2"}>
         {formatCurrency(price)} руб.
       </h3>

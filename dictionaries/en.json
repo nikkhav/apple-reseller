@@ -1,7 +1,8 @@
 {
   "header": {
     "account": "My Account",
-    "sale": "Sales"
+    "sale": "Sales",
+    "new": "New"
   },
   "footer": {
     "contact": "Contact Us",
@@ -17,9 +18,16 @@
       "title": "Welcome to NextJs i18n",
       "description": "Internationalization in NextJs 13 App router"
     },
-    "about": {
-      "title": "About Us",
-      "description": "This is the about page"
+    "products": {
+      "titles": {
+        "iphone": "iPhone",
+        "mac": "Mac",
+        "ipad": "iPad",
+        "watch": "Watch",
+        "accessories": "Accessories",
+        "new": "New",
+        "sale": "Sale"
+      }
     }
   }
 }

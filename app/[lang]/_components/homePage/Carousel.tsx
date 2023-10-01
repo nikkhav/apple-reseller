@@ -67,7 +67,7 @@ const Carousel = ({
 
   return (
     <div
-      className="w-screen relative"
+      className="w-full relative"
       style={{
         height: "40rem",
         overflow: "hidden",
