@@ -4,19 +4,31 @@ import Product from "@/models/product";
 
 export async function GET(request: NextRequest) {
   const category = request.nextUrl.searchParams.get("category");
-  console.log(category);
   await connectMongoDB();
 
-  const data = {
-    productsIphone: [],
-    productsIpad: [],
-    productsMac: [],
-    productsWatch: [],
-  };
+  let allProducts;
 
-  return NextResponse.json(data, {
-    status: 200,
-  });
+  try {
+    if (category) {
+      allProducts = await Product.find({ category });
+    } else {
+      allProducts = await Product.find();
+    }
+
+    return NextResponse.json(allProducts, {
+      status: 200,
+    });
+  } catch (error: any) {
+    return NextResponse.json(
+      {
+        message: "Error fetching products",
+        error: error.message,
+      },
+      {
+        status: 500,
+      },
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
