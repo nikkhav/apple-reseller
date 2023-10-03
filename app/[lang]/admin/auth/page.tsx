@@ -26,7 +26,6 @@ export default function AdminAuth({
   const dispatch = useAppDispatch();
 
   const login = async () => {
-    console.log(loginForm);
     if (loginForm.email.length < 3) {
       setError("Login must be at least 3 characters");
       return;
@@ -57,7 +56,7 @@ export default function AdminAuth({
       );
 
       if (admin) {
-        router.push(`/${lang}/admin/`);
+        router.push(`/${lang}/admin/${admin._id}}`);
       }
     } catch (e) {
       console.log(e);

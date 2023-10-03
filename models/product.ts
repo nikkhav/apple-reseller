@@ -21,7 +21,8 @@ const ProductSchema = new Schema(
       type: PriceSchema,
       required: true,
     },
-    image: { type: String },
+    cardImage: { type: String },
+    images: { type: [String] },
     description: {
       type: TranslationSchema,
     },

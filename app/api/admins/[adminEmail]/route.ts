@@ -4,14 +4,16 @@ import Admin from "@/models/admin";
 
 export async function GET(
   request: NextRequest,
-  route: { params: { adminId: string } },
+  route: { params: { adminEmail: string } },
 ) {
   try {
-    const adminId = route.params.adminId;
+    const adminEmail = route.params.adminEmail;
 
     await connectMongoDB();
 
-    const admin = await Admin.findById(adminId);
+    const admin = await Admin.findOne({
+      email: adminEmail,
+    });
 
     if (!admin) {
       return NextResponse.json(
@@ -42,18 +44,24 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  route: { params: { adminId: string } },
+  route: { params: { adminEmail: string } },
 ) {
   try {
-    const adminId = route.params.adminId;
+    const adminEmail = route.params.adminEmail;
     const updatedData = await request.json();
 
     await connectMongoDB();
 
-    // Find the admin by ID and update their information
-    const updatedAdmin = await Admin.findByIdAndUpdate(adminId, updatedData, {
-      new: true,
-    });
+    // Find the admin by email and update their information
+    const updatedAdmin = await Admin.findOneAndUpdate(
+      {
+        email: adminEmail,
+      },
+      updatedData,
+      {
+        new: true,
+      },
+    );
 
     if (!updatedAdmin) {
       return NextResponse.json(
@@ -90,15 +98,17 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  route: { params: { adminId: string } },
+  route: { params: { adminEmail: string } },
 ) {
   try {
-    const adminId = route.params.adminId;
+    const adminEmail = route.params.adminEmail;
 
     await connectMongoDB();
 
-    // Find the admin by ID and delete them
-    const deletedAdmin = await Admin.findByIdAndRemove(adminId);
+    // Find the admin by email and delete them
+    const deletedAdmin = await Admin.findOneAndDelete({
+      email: adminEmail,
+    });
 
     if (!deletedAdmin) {
       return NextResponse.json(
