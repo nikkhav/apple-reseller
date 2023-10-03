@@ -3,6 +3,7 @@ import Image from "next/image";
 import logo from "@/public/images/geekbro-logo-light.png";
 import { getDictionary } from "@/lib/dictionary";
 import { Locale } from "@/i18n.config";
+import Link from "next/link";
 
 const Footer = async ({ lang }: { lang: Locale }) => {
   const { footer } = await getDictionary(lang);
@@ -31,6 +32,10 @@ const Footer = async ({ lang }: { lang: Locale }) => {
           This is a demo project made by Nikita Khavkin
         </p>
         <p className={"text-center"}>Github, Telegram: @nikkhav</p>
+
+        <Link href={"/admin/auth"} locale={lang} className={"text-center mt-2"}>
+          Admin login
+        </Link>
       </div>
     </div>
   );

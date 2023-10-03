@@ -28,14 +28,14 @@ export default function AdminsPage({
   });
 
   const [updateAdminForm, setUpdateAdminForm] = useState<{
-    oldEmail: string;
+    currentEmail: string;
     newEmail: string;
     password: string;
     firstName: string;
     lastName: string;
     role: string;
   }>({
-    oldEmail: "",
+    currentEmail: "",
     newEmail: "",
     password: "",
     firstName: "",
@@ -43,8 +43,13 @@ export default function AdminsPage({
     role: "",
   });
 
+  const [deleteAdminEmail, setDeleteAdminEmail] = useState("");
+
   const createAdmin = async () => {
-    // TODO: Check that current admin is head admin
+    if (admin.role !== "head admin") {
+      alert("You are not authorized to perform this action");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -54,15 +59,31 @@ export default function AdminsPage({
 
       if (response.status !== 200) {
         alert(response.data.message);
-      }
+      } else {
+        alert("Admin created successfully");
 
-      alert("Admin created successfully");
+        setCreateAdminForm({
+          email: "",
+          password: "",
+          firstName: "",
+          lastName: "",
+          role: "admin",
+        });
+      }
     } catch (e) {
       console.log(e);
     }
   };
 
   const updateAdmin = async () => {
+    if (
+      admin.email !== updateAdminForm.currentEmail &&
+      admin.role !== "head admin"
+    ) {
+      alert("You are not authorized to perform this action");
+      return;
+    }
+
     try {
       const updateData: {
         email?: string;
@@ -88,15 +109,40 @@ export default function AdminsPage({
         updateData.role = updateAdminForm.role;
       }
       const response = await axios.patch(
-        `/api/admins/${updateAdminForm.oldEmail}`,
+        `/api/admins/${updateAdminForm.currentEmail}`,
         updateData,
       );
 
       if (response.status !== 200) {
         alert(response.data.message);
-      }
+      } else {
+        alert("Admin updated successfully");
 
-      alert("Admin updated successfully");
+        setUpdateAdminForm({
+          currentEmail: "",
+          newEmail: "",
+          password: "",
+          firstName: "",
+          lastName: "",
+          role: "",
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const deleteAdmin = async () => {
+    try {
+      const response = await axios.delete(`/api/admins/${deleteAdminEmail}`);
+
+      if (response.status !== 200) {
+        alert(response.data.message);
+      } else {
+        alert("Admin deleted successfully");
+
+        setDeleteAdminEmail("");
+      }
     } catch (e) {
       console.log(e);
     }
@@ -108,12 +154,14 @@ export default function AdminsPage({
         <h1 className={"text-3xl text-center font-medium"}>Admins Dashboard</h1>
 
         <div className={"flex flex-row justify-evenly mt-10 mx-auto"}>
-          <DashboardCard
-            title={"Add Admin"}
-            description={"Create a new admin"}
-            onClick={() => setAdminAction("add")}
-            buttonText={"Add admin"}
-          />
+          {admin.role === "head admin" && (
+            <DashboardCard
+              title={"Add Admin"}
+              description={"Create a new admin"}
+              onClick={() => setAdminAction("add")}
+              buttonText={"Add admin"}
+            />
+          )}
           <DashboardCard
             title={"Update Credentials or change role of Admin"}
             description={"Update an existing admin"}
@@ -156,6 +204,7 @@ export default function AdminsPage({
                   name={"admin-email"}
                   id={"admin-email"}
                   placeholder={"Email"}
+                  value={createAdminForm.email}
                 />
                 <label className={"text-lg mt-4"} htmlFor={"password"}>
                   Password
@@ -174,6 +223,7 @@ export default function AdminsPage({
                   name={"admin-password"}
                   id={"admin-password"}
                   placeholder={"Password"}
+                  value={createAdminForm.password}
                 />
 
                 <label className={"text-lg mt-4"}>First Name</label>
@@ -190,6 +240,7 @@ export default function AdminsPage({
                   name={"firstname"}
                   id={"firstname"}
                   placeholder={"First Name"}
+                  value={createAdminForm.firstName}
                 />
 
                 <label className={"text-lg mt-4"}>Last Name</label>
@@ -206,6 +257,7 @@ export default function AdminsPage({
                   name={"lastname"}
                   id={"lastname"}
                   placeholder={"Last Name"}
+                  value={createAdminForm.lastName}
                 />
 
                 <label className={"text-lg mt-4"}>Role</label>
@@ -244,7 +296,7 @@ export default function AdminsPage({
               </p>
               <div className={"flex flex-col mt-5 w-5/12"}>
                 <label className={"text-lg"} htmlFor={"email"}>
-                  Old Email*
+                  Current email*
                 </label>
                 <input
                   className={
@@ -253,16 +305,17 @@ export default function AdminsPage({
                   onChange={(e) => {
                     setUpdateAdminForm((prev) => ({
                       ...prev,
-                      oldEmail: e.target.value,
+                      currentEmail: e.target.value,
                     }));
                   }}
                   type={"email"}
                   name={"admin-email"}
                   id={"admin-email"}
-                  placeholder={"Email"}
+                  placeholder={"Current email"}
+                  value={updateAdminForm.currentEmail}
                 />
                 <label className={"text-lg mt-4"} htmlFor={"email"}>
-                  Email
+                  New Email
                 </label>
                 <input
                   className={
@@ -277,7 +330,8 @@ export default function AdminsPage({
                   type={"email"}
                   name={"admin-email"}
                   id={"admin-email"}
-                  placeholder={"Email"}
+                  placeholder={"New email"}
+                  value={updateAdminForm.newEmail}
                 />
                 <label className={"text-lg mt-4"} htmlFor={"password"}>
                   Password
@@ -296,6 +350,7 @@ export default function AdminsPage({
                   name={"admin-password"}
                   id={"admin-password"}
                   placeholder={"Password"}
+                  value={updateAdminForm.password}
                 />
 
                 <label className={"text-lg mt-4"}>First Name</label>
@@ -312,6 +367,7 @@ export default function AdminsPage({
                   name={"firstname"}
                   id={"firstname"}
                   placeholder={"First Name"}
+                  value={updateAdminForm.firstName}
                 />
 
                 <label className={"text-lg mt-4"}>Last Name</label>
@@ -328,6 +384,7 @@ export default function AdminsPage({
                   name={"lastname"}
                   id={"lastname"}
                   placeholder={"Last Name"}
+                  value={updateAdminForm.lastName}
                 />
 
                 {admin.role === "head admin" && (
@@ -357,6 +414,41 @@ export default function AdminsPage({
                   Update admin
                 </button>
               </div>
+            </div>
+          )}
+
+          {adminAction === "delete" && (
+            <div className={"flex flex-col justify-center items-center w-full"}>
+              <h3 className={"text-2xl text-center mt-10"}>Delete Admin</h3>
+
+              <p className={"text-lg text-center mt-4"}>
+                This action is irreversible. Please be sure before deleting an
+                admin.
+              </p>
+
+              <div className={"flex flex-col mt-5 w-5/12"}>
+                <label className={"text-lg"} htmlFor={"email"}>
+                  Admin Email
+                </label>
+                <input
+                  className={
+                    "border border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                  }
+                  onChange={(e) => {
+                    setDeleteAdminEmail(e.target.value);
+                  }}
+                  type={"email"}
+                  placeholder={"Email"}
+                  value={deleteAdminEmail}
+                />
+              </div>
+
+              <button
+                className={"px-4 py-2 mt-8 bg-red-700 text-white rounded-md"}
+                onClick={deleteAdmin}
+              >
+                Delete admin
+              </button>
             </div>
           )}
         </div>
