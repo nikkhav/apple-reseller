@@ -109,7 +109,7 @@ const Carousel = ({
               }
             >
               <h2
-                className={"text-5xl font-semibold"}
+                className={"md:text-5xl text-4xl p-8 text-center font-semibold"}
                 style={{
                   color: image.textColor,
                 }}

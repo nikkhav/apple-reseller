@@ -27,6 +27,12 @@
         "titleWatch": "Apple Watch Series 9",
         "titleIphone": "Titanium. iPhone 15 Pro"
       },
+      "categories": {
+        "iphoneFrom": "From 449 €",
+        "macFrom": "From 999 €",
+        "watchFrom": "From 320 €",
+        "audioFrom": "From 90 €"
+      },
       "productsTitle": "Choose what's right for you",
 
       "accessories": "Accessories",

@@ -68,7 +68,7 @@ const HomeDisplayProducts = ({
     <>
       <div
         className={
-          "flex flex-row justify-between items-center mt-10 mx-auto md:w-11/12"
+          "flex flex-col md:flex-row justify-between items-center mt-10 mx-auto md:w-11/12"
         }
       >
         <h2
@@ -78,7 +78,7 @@ const HomeDisplayProducts = ({
         >
           {title}
         </h2>
-        <Link className={"text-lg text-gray-600 "} href={"/en/"}>
+        <Link className={"text-lg text-gray-600 md:mt-0 mt-5"} href={"/en/"}>
           {translations.allProducts}
         </Link>
       </div>
@@ -119,7 +119,7 @@ const HomeDisplayProducts = ({
       </div>
       <div
         className={
-          "flex flex-col md:flex-row justify-center mt-10 w-10/12 h-80 mx-auto"
+          "flex flex-col md:flex-row justify-center mt-10 w-10/12 md:h-80 mx-auto"
         }
       >
         {displayableProducts.map((product) => (

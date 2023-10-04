@@ -50,7 +50,7 @@ export default async function Home({
   return (
     <main>
       <Carousel images={carouselImages} buttonText={button.learnMore} />
-      <HomeDisplayCategories lang={lang} translations={global} />
+      <HomeDisplayCategories lang={lang} translations={page.home} />
       <HomeDisplayProducts
         translations={page.home}
         globalTranslations={global}

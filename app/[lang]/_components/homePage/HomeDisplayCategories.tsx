@@ -13,34 +13,30 @@ const HomeDisplayCategories = ({
   lang: any;
 }) => {
   return (
-    <div className={"flex flex-row justify-center mt-10"}>
+    <div className={"flex flex-col md:flex-row justify-center mt-10"}>
       <HomeCategoryCard
         linkTo={`${lang}/products/iphone`}
-        translations={translations}
         image={iphone_icon}
         title={"iPhone"}
-        priceFrom={45900}
+        priceFrom={translations.categories.iphoneFrom}
       />
       <HomeCategoryCard
         linkTo={`${lang}/products/mac`}
-        translations={translations}
         image={mac_icon}
         title={"Mac"}
-        priceFrom={99990}
+        priceFrom={translations.categories.iphoneFrom}
       />
       <HomeCategoryCard
         linkTo={`${lang}/products/watch`}
-        translations={translations}
         image={watch_icon}
         title={"Apple Watch"}
-        priceFrom={31990}
+        priceFrom={translations.categories.iphoneFrom}
       />
       <HomeCategoryCard
         linkTo={`${lang}/products/audio`}
-        translations={translations}
         image={airpods_icon}
         title={"Audio"}
-        priceFrom={9990}
+        priceFrom={translations.categories.iphoneFrom}
       />
     </div>
   );

@@ -56,7 +56,7 @@ export default function AdminAuth({
       );
 
       if (admin) {
-        router.push(`/${lang}/admin/${admin._id}}`);
+        router.push(`/${lang}/admin/dashboard`);
       }
     } catch (e) {
       console.log(e);

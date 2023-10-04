@@ -2,13 +2,22 @@
 import { Locale } from "@/i18n.config";
 import { useAppSelector } from "@/app/store/hooks";
 import DashboardCard from "@/app/[lang]/_components/admins/DashboardCard";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminPage({
-  params: { lang, adminId },
+  params: { lang },
 }: {
-  params: { lang: Locale; adminId: string };
+  params: { lang: Locale };
 }) {
   const admin = useAppSelector((state) => state.admin);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!admin.id) {
+      router.replace(`/${lang}/admin/auth`);
+    }
+  }, [admin, lang, router]);
   return (
     <>
       <div className={"w-10/12 mx-auto p-10"}>
@@ -28,19 +37,19 @@ export default function AdminPage({
           <DashboardCard
             title={"Products"}
             description={"View, add, edit, delete products"}
-            link={`/${lang}/admin/${adminId}/products`}
+            link={`/${lang}/admin/dashboard/products`}
             buttonText={"Manage products"}
           />
           <DashboardCard
             title={"Orders"}
             description={"View, add, edit, delete orders"}
-            link={`/${lang}/admin/${adminId}/orders`}
+            link={`/${lang}/admin/dashboard/orders`}
             buttonText={"Manage orders"}
           />
           <DashboardCard
             title={"Admins"}
             description={"View, add, edit, delete admins"}
-            link={`/${lang}/admin/${adminId}/admins`}
+            link={`/${lang}/admin/dashboard/admins`}
             buttonText={"Manage admins"}
           />
         </div>

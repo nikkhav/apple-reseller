@@ -1,14 +1,25 @@
 "use client";
 import { Locale } from "@/i18n.config";
 import DashboardCard from "@/app/[lang]/_components/admins/DashboardCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/app/store/hooks";
 
 export default function OrdersPage({
-  params: {},
+  params: { lang },
 }: {
-  params: { lang: Locale; adminId: string };
+  params: { lang: Locale };
 }) {
   const [productAction, setProductAction] = useState<string>("");
+  const admin = useAppSelector((state) => state.admin);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!admin.id) {
+      router.replace(`/${lang}/admin/auth`);
+    }
+  }, [admin, lang, router]);
   return (
     <div>
       <div className={"p-10"}>

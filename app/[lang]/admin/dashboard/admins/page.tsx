@@ -1,17 +1,19 @@
 "use client";
 import { Locale } from "@/i18n.config";
 import DashboardCard from "@/app/[lang]/_components/admins/DashboardCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAppSelector } from "@/app/store/hooks";
+import { useRouter } from "next/navigation";
 
 export default function AdminsPage({
-  params: {},
+  params: { lang },
 }: {
-  params: { lang: Locale; adminId: string };
+  params: { lang: Locale };
 }) {
   const [adminAction, setAdminAction] = useState<string>("");
   const admin = useAppSelector((state) => state.admin);
+  const router = useRouter();
 
   const [createAdminForm, setCreateAdminForm] = useState<{
     email: string;
@@ -80,7 +82,9 @@ export default function AdminsPage({
       admin.email !== updateAdminForm.currentEmail &&
       admin.role !== "head admin"
     ) {
-      alert("You are not authorized to perform this action");
+      alert(
+        "You are not authorized to perform this action. \n You can update only your own account",
+      );
       return;
     }
 
@@ -133,6 +137,12 @@ export default function AdminsPage({
   };
 
   const deleteAdmin = async () => {
+    if (admin.email !== deleteAdminEmail && admin.role !== "head admin") {
+      alert(
+        "You are not authorized to perform this action. \n You can delete only your own account.",
+      );
+      return;
+    }
     try {
       const response = await axios.delete(`/api/admins/${deleteAdminEmail}`);
 
@@ -147,6 +157,12 @@ export default function AdminsPage({
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    if (!admin.id) {
+      router.replace(`/${lang}/admin/auth`);
+    }
+  }, [admin, lang, router]);
 
   return (
     <div>

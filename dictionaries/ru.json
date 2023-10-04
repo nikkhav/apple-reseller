@@ -27,6 +27,12 @@
         "titleWatch": "Apple Watch Series 9",
         "titleIphone": "Титан. iPhone 15 Pro"
       },
+      "categories": {
+        "iphoneFrom": "От 44 900 ₽",
+        "macFrom": "От 99 900 ₽",
+        "watchFrom": "От 31 900 ₽",
+        "audioFrom": "От 9 900 ₽"
+      },
       "productsTitle": "Выбирайте то, что вам по душе",
 
       "accessories": "Аксессуары",
