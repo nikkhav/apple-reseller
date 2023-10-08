@@ -17,11 +17,9 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.1",
-    "bcrypt": "^5.1.1",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.5.3",
     "negotiator": "^0.6.3",
     "next": "13.4.19",
     "postcss": "8.4.29",
@@ -35,6 +33,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.3",
+    "@types/multer": "^1.4.8",
     "@types/negotiator": "^0.6.1",
     "server-only": "^0.0.1"
   }

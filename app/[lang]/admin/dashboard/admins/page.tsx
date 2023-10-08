@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAppSelector } from "@/app/store/hooks";
 import { useRouter } from "next/navigation";
+import { config } from "@/app/config";
+import Link from "next/link";
 
 export default function AdminsPage({
   params: { lang },
@@ -55,7 +57,7 @@ export default function AdminsPage({
 
     try {
       const response = await axios.post(
-        "/api/admins/auth/register",
+        `${config.API_URL}admins/auth/register`,
         createAdminForm,
       );
 
@@ -113,7 +115,7 @@ export default function AdminsPage({
         updateData.role = updateAdminForm.role;
       }
       const response = await axios.patch(
-        `/api/admins/${updateAdminForm.currentEmail}`,
+        `${config.API_URL}admins/${updateAdminForm.currentEmail}`,
         updateData,
       );
 
@@ -144,7 +146,9 @@ export default function AdminsPage({
       return;
     }
     try {
-      const response = await axios.delete(`/api/admins/${deleteAdminEmail}`);
+      const response = await axios.delete(
+        `${config.API_URL}admins/${deleteAdminEmail}`,
+      );
 
       if (response.status !== 200) {
         alert(response.data.message);
@@ -165,10 +169,15 @@ export default function AdminsPage({
   }, [admin, lang, router]);
 
   return (
-    <div>
+    <>
       <div className={"p-10"}>
         <h1 className={"text-3xl text-center font-medium"}>Admins Dashboard</h1>
-
+        <Link
+          className={"text-lg text-center underline mt-2 block"}
+          href={`/${lang}/admin/dashboard`}
+        >
+          Go back to all dashboards
+        </Link>
         <div className={"flex flex-row justify-evenly mt-10 mx-auto"}>
           {admin.role === "head admin" && (
             <DashboardCard
@@ -325,8 +334,6 @@ export default function AdminsPage({
                     }));
                   }}
                   type={"email"}
-                  name={"admin-email"}
-                  id={"admin-email"}
                   placeholder={"Current email"}
                   value={updateAdminForm.currentEmail}
                 />
@@ -344,8 +351,6 @@ export default function AdminsPage({
                     }));
                   }}
                   type={"email"}
-                  name={"admin-email"}
-                  id={"admin-email"}
                   placeholder={"New email"}
                   value={updateAdminForm.newEmail}
                 />
@@ -363,8 +368,6 @@ export default function AdminsPage({
                     }));
                   }}
                   type={"password"}
-                  name={"admin-password"}
-                  id={"admin-password"}
                   placeholder={"Password"}
                   value={updateAdminForm.password}
                 />
@@ -380,8 +383,6 @@ export default function AdminsPage({
                       firstName: e.target.value,
                     }));
                   }}
-                  name={"firstname"}
-                  id={"firstname"}
                   placeholder={"First Name"}
                   value={updateAdminForm.firstName}
                 />
@@ -397,8 +398,6 @@ export default function AdminsPage({
                       lastName: e.target.value,
                     }));
                   }}
-                  name={"lastname"}
-                  id={"lastname"}
                   placeholder={"Last Name"}
                   value={updateAdminForm.lastName}
                 />
@@ -469,6 +468,6 @@ export default function AdminsPage({
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
