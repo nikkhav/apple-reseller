@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Locale } from "@/i18n.config";
 import { useAppDispatch } from "@/app/store/hooks";
 import { setAdmin } from "@/app/store/slices/adminSlice";
+import { config } from "@/app/config";
 
 export default function AdminAuth({
   params: { lang },
@@ -37,7 +38,10 @@ export default function AdminAuth({
     }
 
     try {
-      const response = await axios.post("/api/admins/auth/login", loginForm);
+      const response = await axios.post(
+        `${config.API_URL}admins/auth/login`,
+        loginForm,
+      );
 
       if (response.status !== 200) {
         setError(response.data.message);
